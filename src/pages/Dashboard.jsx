@@ -130,7 +130,7 @@ if (data?.matchedUserStats) {
 
       <div>
         <span>Acceptance</span>
-        <strong>{data.acceptanceRate}%</strong>
+        <strong>{acceptanceRate ? acceptanceRate + "%" : "N/A"}</strong>
       </div>
 
       <div>
