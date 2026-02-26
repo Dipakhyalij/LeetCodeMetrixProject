@@ -22,6 +22,7 @@ function Dashboard() {
 
   try {
     const result = await getData(username);
+    console.log(result)
 
     if (!result || result.status === "error") {
       throw new Error();
@@ -74,6 +75,17 @@ if (loading) {
       </div>
     );
   }
+
+  let acceptanceRate = null;
+
+if (data?.matchedUserStats) {
+  const accepted = data.matchedUserStats.acSubmissionNum[0].count;
+  const total = data.matchedUserStats.totalSubmissionNum[0].count;
+
+  acceptanceRate = total
+    ? ((accepted / total) * 100).toFixed(2)
+    : 0;
+}
 
   return (
     <>
@@ -186,7 +198,7 @@ if (loading) {
 
     <div className="card">
       <h3>Acceptance Rate</h3>
-      <p>{data.acceptanceRate}%</p>
+      <p>{acceptanceRate ? acceptanceRate + "%" : "N/A"}</p>
     </div>
 
     <div className="card">
@@ -196,7 +208,8 @@ if (loading) {
 
     <div className="card">
       <h3>Contribution</h3>
-      <p>{data.contributionPoints}</p>
+      <p>{data.contributionPoint
+}</p>
     </div>
 
   </div>
